@@ -53,6 +53,7 @@ class SecondScreenActivity : AppCompatActivity() {
         val email:String = intent.getStringExtra("email").toString()
         val age:String = intent.getStringExtra("age").toString()
         val male:Boolean = intent.getBooleanExtra("gender",true)
+        val image:String = intent.getStringExtra("image").toString()
 
 
         submit.setOnClickListener{
@@ -65,7 +66,7 @@ class SecondScreenActivity : AppCompatActivity() {
             if(sport.isChecked) hobbies+= " Sport"
             if(games.isChecked) hobbies+= " Games"
 
-            val intent = Intent(this,ResumeScreenActivity::class.java).apply {
+            val intent = Intent(this,Resume2Activity::class.java).apply {
                 putExtra("name",name)
                 putExtra("email",email)
                 putExtra("age",age)
@@ -75,7 +76,7 @@ class SecondScreenActivity : AppCompatActivity() {
                 putExtra("flutter",flutter.value.toString())
                 putExtra("languages",languages)
                 putExtra("hobbies",hobbies)
-
+                putExtra("image",image)
             }
             startActivity(intent)
             finish()

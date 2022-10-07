@@ -1,13 +1,18 @@
 package com.example.cv
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.cast.framework.media.ImagePicker
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -25,7 +30,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var male: RadioButton
     lateinit var next: Button
 
-
+    val REQUEST_CODE = 100
+    lateinit var imageButton: ImageView
+    lateinit var image : Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         email = findViewById<EditText>(R.id.email)
         emailContainer = findViewById<TextInputLayout>(R.id.emailContainer)
         male = findViewById<RadioButton>(R.id.male)
+
+        imageButton = findViewById(R.id.imageView)
+
+        imageButton.setOnClickListener { openGalleryForImage() }
 
         name.setOnFocusChangeListener{_,focused ->
             if(!focused)
@@ -66,23 +77,13 @@ class MainActivity : AppCompatActivity() {
                     putExtra("email",email.text.toString())
                     putExtra("age",age.text.toString())
                     putExtra("gender",male.isChecked)
+                    putExtra("image",image.data.toString())
                 }
                 startActivity(intent)
 
             }
         }
 
-
-//    fun reset(){
-//        name.text.clear()
-//        age.text.clear()
-//        email.text.clear()
-//        male.isChecked = true
-//
-//        androidSlider.value= 0.toFloat()
-//        ios.value= 0.toFloat()
-//        flutter.value= 0.toFloat()
-//    }
 
     private fun validName(name: String) : String? {
         if(name.isEmpty())
@@ -117,4 +118,18 @@ class MainActivity : AppCompatActivity() {
         return pattern.matcher(email).matches()
     }
 
+    private fun openGalleryForImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+
+            image = data!!
+            imageButton.setImageURI(image.data) // handle chosen image
+        }
+    }
 }

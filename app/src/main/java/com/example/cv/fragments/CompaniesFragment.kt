@@ -1,12 +1,15 @@
-package com.example.cv
+package com.example.cv.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.RadioButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cv.CompanyAdapter
+import com.example.cv.R
+import com.example.cv.models.Company
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +18,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [HobbiesFragment.newInstance] factory method to
+ * Use the [CompaniesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HobbiesFragment : Fragment() {
+class CompaniesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -31,34 +34,39 @@ class HobbiesFragment : Fragment() {
         }
     }
 
-    private lateinit var music : CheckBox
-    private lateinit var sport : CheckBox
-    private lateinit var games : CheckBox
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_hobbies,container,false)
+        val view = inflater.inflate(R.layout.fragment_companies,container,false)
 
-        music = view.findViewById<CheckBox>(R.id.cbMusic)
-        sport = view.findViewById<CheckBox>(R.id.cbSport)
-        games = view.findViewById<CheckBox>(R.id.cbGames)
+        // getting the recyclerview by its id
+        val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview)
 
-        val data = arguments
-        val hobbies = data!!.get("hobbies").toString()
+        // this creates a vertical layout Manager
+        recyclerview.layoutManager = LinearLayoutManager(context)
 
-        if(hobbies.contains("Music"))
-            music.isChecked = true
-        if(hobbies.contains("Sport"))
-            sport.isChecked = true
-        if(hobbies.contains("Games"))
-            games.isChecked = true
+        // ArrayList of class ItemsViewModel
+        val data = mutableListOf<Company>()
+
+        // This loop will create 20 Views containing
+        // the image with the count of view
+        data.add(Company(R.drawable.apple, "Apple", "31/08/1999","lorem"))
 
 
-        return view
-    }
+        // This will pass the ArrayList to our Adapter
+        val adapter = CompanyAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        recyclerview.adapter = adapter
+//        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
+//            override fun onItemClick(position: Int) {
+//                print(position)
+//            }
+//        })
+
+        return view    }
 
     companion object {
         /**
@@ -67,12 +75,12 @@ class HobbiesFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment HobbiesFragment.
+         * @return A new instance of fragment CompaniesFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HobbiesFragment().apply {
+            CompaniesFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

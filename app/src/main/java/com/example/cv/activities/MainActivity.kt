@@ -1,10 +1,7 @@
-package com.example.cv
+package com.example.cv.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
@@ -12,9 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.cast.framework.media.ImagePicker
-import com.google.android.material.slider.Slider
-import com.google.android.material.snackbar.Snackbar
+import com.example.cv.R
 import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
 
@@ -72,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 validAge(age.text.toString()) != null)
                     return@setOnClickListener
 
-                val intent = Intent(this,SecondScreenActivity::class.java).apply {
+                val intent = Intent(this, SecondScreenActivity::class.java).apply {
                     putExtra("name",name.text.toString())
                     putExtra("email",email.text.toString())
                     putExtra("age",age.text.toString())
@@ -98,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             return "Type your email!"
         }
         if (!isValidEmail(email.toString())) {
-//            val snack = Snackbar.make(it,"Type a valid email!", Snackbar.LENGTH_LONG)
+  //          val snack = Snackbar.make(it,"Type a valid email!", Snackbar.LENGTH_LONG)
 //            snack.show()
             return "Type a valid email!"
 
@@ -127,7 +122,6 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
-
             image = data!!
             imageButton.setImageURI(image.data) // handle chosen image
         }

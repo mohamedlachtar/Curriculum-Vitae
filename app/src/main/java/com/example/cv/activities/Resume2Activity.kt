@@ -1,12 +1,18 @@
-package com.example.cv
+package com.example.cv.activities
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.example.cv.R
 import com.example.cv.databinding.ActivityResume2Binding
+import com.example.cv.fragments.AboutMeFragment
+import com.example.cv.fragments.HobbiesFragment
+import com.example.cv.fragments.LanguagesFragment
+import com.example.cv.fragments.SkillsFragment
 
 class Resume2Activity : AppCompatActivity() {
 
@@ -50,6 +56,12 @@ class Resume2Activity : AppCompatActivity() {
             val bundle = Bundle()
             bundle.putString("languages",languages)
             replaceFragment(LanguagesFragment(),bundle)
+        }
+
+
+        binding.button.setOnClickListener{
+            val intent = Intent(Resume2Activity@this, RvActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -98,3 +110,5 @@ class Resume2Activity : AppCompatActivity() {
         }
     }
 }
+
+

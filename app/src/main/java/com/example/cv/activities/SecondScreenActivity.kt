@@ -1,15 +1,12 @@
-package com.example.cv
+package com.example.cv.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.RadioButton
-import androidx.core.text.toSpannable
+import com.example.cv.R
 import com.google.android.material.slider.Slider
-import com.google.android.material.snackbar.Snackbar
 
 class SecondScreenActivity : AppCompatActivity() {
 
@@ -66,7 +63,7 @@ class SecondScreenActivity : AppCompatActivity() {
             if(sport.isChecked) hobbies+= " Sport"
             if(games.isChecked) hobbies+= " Games"
 
-            val intent = Intent(this,Resume2Activity::class.java).apply {
+            val intent = Intent(this, Resume2Activity::class.java).apply {
                 putExtra("name",name)
                 putExtra("email",email)
                 putExtra("age",age)

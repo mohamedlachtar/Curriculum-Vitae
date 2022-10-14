@@ -1,4 +1,4 @@
-package com.example.cv
+package com.example.cv.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.TextView
+import android.widget.RadioButton
+import com.example.cv.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AboutMeFragment.newInstance] factory method to
+ * Use the [HobbiesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AboutMeFragment : Fragment() {
+class HobbiesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -31,19 +32,31 @@ class AboutMeFragment : Fragment() {
         }
     }
 
-    private lateinit var textView : TextView
+    private lateinit var music : CheckBox
+    private lateinit var sport : CheckBox
+    private lateinit var games : CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_hobbies,container,false)
 
-        val view = inflater.inflate(R.layout.fragment_about_me,container,false)
-        textView = view.findViewById<TextView>(R.id.textView)
+        music = view.findViewById<CheckBox>(R.id.cbMusic)
+        sport = view.findViewById<CheckBox>(R.id.cbSport)
+        games = view.findViewById<CheckBox>(R.id.cbGames)
 
         val data = arguments
-        val aboutMe = data!!.get("aboutMe").toString()
-        textView.text = aboutMe
+        val hobbies = data!!.get("hobbies").toString()
+
+        if(hobbies.contains("Music"))
+            music.isChecked = true
+        if(hobbies.contains("Sport"))
+            sport.isChecked = true
+        if(hobbies.contains("Games"))
+            games.isChecked = true
+
 
         return view
     }
@@ -55,12 +68,12 @@ class AboutMeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AboutMeFragment.
+         * @return A new instance of fragment HobbiesFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AboutMeFragment().apply {
+            HobbiesFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

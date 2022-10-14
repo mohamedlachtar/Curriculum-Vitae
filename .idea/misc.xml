@@ -25,6 +25,13 @@
         <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/CV/app/src/main/res/mipmap-anydpi-v26/ic_info.xml" value="0.2265" />
         <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/CV/app/src/main/res/mipmap-anydpi-v26/ic_info_round.xml" value="0.1245" />
         <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/CV/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/drawable/image_shadow.xml" value="0.2255" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/activity_resume2.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/activity_rv.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/company_recycler_view_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/education_recycler_view_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/fragment_companies.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/ziedd/Desktop/Fac/4SIM/Android/Curriculum-Vitae/app/src/main/res/layout/fragment_education.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>

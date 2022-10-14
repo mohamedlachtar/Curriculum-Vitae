@@ -1,9 +1,10 @@
-package com.example.cv
+package com.example.cv.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.cv.R
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
         handler = Handler()
         handler.postDelayed({
             //val intent = Intent(this,MainActivity::class.java)
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         },3000)

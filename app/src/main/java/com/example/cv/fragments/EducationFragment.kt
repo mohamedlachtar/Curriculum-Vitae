@@ -52,8 +52,8 @@ class EducationFragment : Fragment() {
 
         // This loop will create 20 Views containing
         // the image with the count of view
-        data.add(Education(R.drawable.stamford, "Stamford", "lorem"))
-        data.add(Education(R.drawable.stamford, "Stamford", "lorem ipsum"))
+        data.add(Education(R.drawable.stamford, "Stamford", "USA","20/07/2024","20/07/2027","The one and only"))
+        data.add(Education(R.drawable.stamford, "Stamford", "USA","20/07/2024","20/07/2027","The one and only"))
 
 
         // This will pass the ArrayList to our Adapter

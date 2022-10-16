@@ -39,8 +39,10 @@ class EducationAdapter(private val mList: MutableList<Education>) : RecyclerView
             holder.imageView.setImageResource(ItemsViewModel.image)
 
             // sets the text to the textview from our itemHolder class
-            holder.textView.text = ItemsViewModel.name
-            holder.textView2.text = ItemsViewModel.description
+            holder.nameTextView.text = ItemsViewModel.name
+            holder.addressTextView.text = ItemsViewModel.address
+            holder.starDateTextView.text = ItemsViewModel.startDate
+            holder.endDateTextView.text = ItemsViewModel.endDate
             holder.itemView.setOnClickListener {}
 
         }
@@ -53,8 +55,10 @@ class EducationAdapter(private val mList: MutableList<Education>) : RecyclerView
         // Holds the views for adding it to image and text
         class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
             val imageView: ImageView = itemView.findViewById(R.id.imageview)
-            val textView: TextView = itemView.findViewById(R.id.textView)
-            val textView2: TextView = itemView.findViewById(R.id.textView2)
+            val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+            val addressTextView: TextView = itemView.findViewById(R.id.addressTextView)
+            val starDateTextView: TextView = itemView.findViewById(R.id.startDateTextView)
+            val endDateTextView: TextView = itemView.findViewById(R.id.endDateTextView)
 
 //            init {
 //                itemView.setOnClickListener {

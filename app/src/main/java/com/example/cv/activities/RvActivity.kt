@@ -18,8 +18,10 @@ class RvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRvBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.setTitle("Your Career")
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        replaceFragment(EducationFragment())
+        replaceFragment(CompaniesFragment())
 
         binding.companiesButton .setOnClickListener{
             replaceFragment(CompaniesFragment())

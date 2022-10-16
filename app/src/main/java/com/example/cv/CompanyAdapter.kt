@@ -39,8 +39,10 @@ class CompanyAdapter(private val mList: MutableList<Company>) : RecyclerView.Ada
         holder.imageView.setImageResource(ItemsViewModel.image)
         // sets the text to the textview from our itemHolder class
         holder.nameTextView.text = ItemsViewModel.name
-        holder.dateTextView.text = ItemsViewModel.date
-        holder.descriptionTextView.text = ItemsViewModel.location
+        holder.adressTextView.text = ItemsViewModel.address
+        holder.starDateTextView.text = ItemsViewModel.startDate
+        holder.endDateTextView.text = ItemsViewModel.endDate
+        holder.descriptionTextView.text = ItemsViewModel.description
         holder.itemView.setOnClickListener {}
 
     }
@@ -54,7 +56,9 @@ class CompanyAdapter(private val mList: MutableList<Company>) : RecyclerView.Ada
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
+        val adressTextView: TextView = itemView.findViewById(R.id.addressTextView)
+        val starDateTextView: TextView = itemView.findViewById(R.id.startDateTextView)
+        val endDateTextView: TextView = itemView.findViewById(R.id.endDateTextView)
         val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
 
 

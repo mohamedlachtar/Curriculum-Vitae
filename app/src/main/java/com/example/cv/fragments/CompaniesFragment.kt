@@ -52,7 +52,8 @@ class CompaniesFragment : Fragment() {
 
         // This loop will create 20 Views containing
         // the image with the count of view
-        data.add(Company(R.drawable.apple, "Apple", "31/08/1999","lorem"))
+        data.add(Company(R.drawable.apple, "Apple", "USA","20/07/2024","20/07/2027","The one and only"))
+        data.add(Company(R.drawable.apple, "Apple", "USA","20/07/2024","20/07/2027","The one and only"))
 
 
         // This will pass the ArrayList to our Adapter

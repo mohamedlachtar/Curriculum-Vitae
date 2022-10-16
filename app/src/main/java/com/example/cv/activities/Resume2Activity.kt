@@ -22,6 +22,7 @@ class Resume2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResume2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.setTitle("Your Resume")
 
         val name:String = intent.getStringExtra("name").toString()
         val email:String = intent.getStringExtra("email").toString()

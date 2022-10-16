@@ -40,7 +40,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_style"
-            android:text="Companies"
+            android:text="Experience"
             android:textColor="#FFFF"
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"

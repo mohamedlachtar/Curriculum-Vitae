@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     putExtra("email",email.text.toString())
                     putExtra("age",age.text.toString())
                     putExtra("gender",male.isChecked)
-                    putExtra("image",image.data.toString())
+                    //putExtra("image",image.data.toString())
                 }
                 startActivity(intent)
 

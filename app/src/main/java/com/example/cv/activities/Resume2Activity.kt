@@ -1,11 +1,14 @@
 package com.example.cv.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.cv.R
 import com.example.cv.databinding.ActivityResume2Binding
@@ -17,6 +20,8 @@ import com.example.cv.fragments.SkillsFragment
 class Resume2Activity : AppCompatActivity() {
 
     private lateinit var binding : ActivityResume2Binding
+    lateinit var preference : SharedPreferences
+    private lateinit var builder : AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,9 @@ class Resume2Activity : AppCompatActivity() {
 
         val image = intent.getStringExtra("image")
         val fileUri = Uri.parse(image)
+        
+        preference=getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        builder = AlertDialog.Builder(this)
         binding.imageView.setImageURI(fileUri)
 
         binding.nameTextView.text = name
@@ -105,6 +113,22 @@ class Resume2Activity : AppCompatActivity() {
                 val aboutMe = "Hello! My name is $name\nI'm $age years old\nand i'm a $gn\nYou can contact me via my email\n$email  "
                 bundle.putString("aboutMe",aboutMe)
                 replaceFragment(AboutMeFragment(),bundle)
+                return true
+            }
+            R.id.logOut -> {
+
+                builder.setTitle("Log Out").setMessage("Are you sure you want to log out?")
+                    .setCancelable(true)
+                    .setNegativeButton("No"){dialogInterface,it ->
+                        dialogInterface.cancel()
+                    }
+                    .setPositiveButton("Yes"){dialogInterface,it ->
+                        getSharedPreferences(PREF_NAME, MODE_PRIVATE).edit().clear().apply()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    .show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

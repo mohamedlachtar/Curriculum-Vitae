@@ -1,10 +1,12 @@
 package com.example.cv.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var email: EditText
     lateinit var emailContainer: TextInputLayout
     lateinit var male: RadioButton
+    lateinit var female: RadioButton
     lateinit var next: Button
 
     val REQUEST_CODE = 100
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         this.setTitle("Create your resume");
 
+
         name = findViewById<EditText>(R.id.name)
         nameContainer = findViewById<TextInputLayout>(R.id.nameContainer)
         age = findViewById<EditText>(R.id.age)
@@ -41,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         email = findViewById<EditText>(R.id.email)
         emailContainer = findViewById<TextInputLayout>(R.id.emailContainer)
         male = findViewById<RadioButton>(R.id.male)
+        female = findViewById<RadioButton>(R.id.female)
 
         imageButton = findViewById(R.id.imageView)
 
@@ -61,11 +66,16 @@ class MainActivity : AppCompatActivity() {
 
         next = findViewById<Button>(R.id.nextButton)
 
+
+        //name.text= nameSH!
+        //email.text = emailSH!
+
         next.setOnClickListener {
 
             if(validName(name.text.toString())!=null || validEmail(email.text.toString()) != null ||
                 validAge(age.text.toString()) != null)
                     return@setOnClickListener
+
 
                 val intent = Intent(this, SecondScreenActivity::class.java).apply {
                     putExtra("name",name.text.toString())

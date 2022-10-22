@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cv.EducationAdapter
 import com.example.cv.R
-import com.example.cv.models.Company
 import com.example.cv.models.Education
+import com.example.cv.utils.AppDataBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +35,9 @@ class EducationFragment : Fragment() {
         }
     }
 
+    private lateinit var  db : AppDataBase
+    private lateinit var adapter : EducationAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,28 +47,15 @@ class EducationFragment : Fragment() {
         // getting the recyclerview by its id
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview)
 
-        // this creates a vertical layout Manager
-        recyclerview.layoutManager = LinearLayoutManager(context)
-
-        // ArrayList of class ItemsViewModel
-        val data = mutableListOf<Education>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        data.add(Education(R.drawable.stamford, "Stamford", "USA","20/07/2024","20/07/2027","The one and only"))
-        data.add(Education(R.drawable.stamford, "Stamford", "USA","20/07/2024","20/07/2027","The one and only"))
+        db = AppDataBase.getDatabase(getActivity()!!)
 
 
-        // This will pass the ArrayList to our Adapter
-        val adapter = EducationAdapter(data)
-
-        // Setting the Adapter with the recyclerview
+        var list = ArrayList<Education>()
+        list.addAll(db.educationDao().getAll())
+        adapter = EducationAdapter(list)
         recyclerview.adapter = adapter
-//        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
-//            override fun onItemClick(position: Int) {
-//                print(position)
-//            }
-//        })
+
+        recyclerview.layoutManager = LinearLayoutManager(context)
 
         return view
     }

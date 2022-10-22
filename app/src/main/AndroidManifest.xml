@@ -16,12 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CV"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.RvActivity"
-             />
-        <activity
-            android:name=".activities.Resume2Activity"
-        />
+        <activity android:name=".activities.RvActivity" />
+        <activity android:name=".activities.Resume2Activity" />
         <activity
             android:name=".activities.SecondScreenActivity"
             android:exported="false" />
@@ -34,6 +30,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.AddExperienceEducationActivity"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
         <activity
             android:name=".activities.MainActivity"

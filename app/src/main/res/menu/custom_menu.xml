@@ -7,4 +7,11 @@
         android:id="@+id/info"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_info_24"/>
+
+    <item
+        android:title=""
+        android:id="@+id/logOut"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_logout_24"/>
+
 </menu>

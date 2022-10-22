@@ -1,12 +1,18 @@
 package com.example.cv.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import com.example.cv.R
 import com.google.android.material.slider.Slider
+
+
+const val PREF_NAME = "LOGIN_PREF_LOL"
+const val IS_REMEMBRED = "IS_REMEMBRED"
 
 class SecondScreenActivity : AppCompatActivity() {
 
@@ -25,7 +31,10 @@ class SecondScreenActivity : AppCompatActivity() {
     var languages = ""
     var hobbies = ""
 
+    lateinit var rememberMe : CheckBox
     lateinit var submit: Button
+
+    lateinit var preference : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +53,10 @@ class SecondScreenActivity : AppCompatActivity() {
         sport = findViewById<CheckBox>(R.id.cbSport)
         games = findViewById<CheckBox>(R.id.cbGames)
 
-        submit = findViewById<CheckBox>(R.id.submitButton)
+
+        rememberMe = findViewById<CheckBox>(R.id.rememberMeCB)
+        submit = findViewById<Button>(R.id.submitButton)
+        preference=getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
         val name:String = intent.getStringExtra("name").toString()
         val email:String = intent.getStringExtra("email").toString()
@@ -62,6 +74,27 @@ class SecondScreenActivity : AppCompatActivity() {
             if(music.isChecked) hobbies+= " Music"
             if(sport.isChecked) hobbies+= " Sport"
             if(games.isChecked) hobbies+= " Games"
+
+            if (rememberMe.isChecked){
+                //TODO 4 "Edit the SharedPreferences by putting all the data"
+                val editor=preference.edit()
+                editor.apply{
+                    editor.putString("name",name)
+                    editor.putString("email",email)
+                    editor.putString("age",age)
+                    editor.putBoolean("gender",male)
+                    editor.putString("android",androidSlider.value.toString())
+                    editor.putString("ios",ios.value.toString())
+                    editor.putString("flutter",flutter.value.toString())
+                    editor.putString("languages",languages)
+                    editor.putString("hobbies",hobbies)
+                    editor.putString("image",image)
+                    editor.putBoolean(IS_REMEMBRED,true)
+
+                }.apply()
+
+
+            }
 
             val intent = Intent(this, Resume2Activity::class.java).apply {
                 putExtra("name",name)

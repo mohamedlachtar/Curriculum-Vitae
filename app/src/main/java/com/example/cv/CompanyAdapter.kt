@@ -1,25 +1,22 @@
 package com.example.cv
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cv.models.Company
+import com.example.cv.utils.AppDataBase
 
 class CompanyAdapter(private val mList: MutableList<Company>) : RecyclerView.Adapter<CompanyAdapter.ViewHolder>() {
 
-    //private lateinit var mListener : onItemClickListener
 
-//        interface onItemClickListener{
-//            fun onItemClick(position: Int)
-//        }
-//
-//        fun setOnItemClickListener(listener: onItemClickListener)
-//        {
-//            mListener = listener
-//        }
+    private lateinit var builder : AlertDialog.Builder
+
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,16 +32,31 @@ class CompanyAdapter(private val mList: MutableList<Company>) : RecyclerView.Ada
 
         val ItemsViewModel = mList[position]
 
-        // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
-        // sets the text to the textview from our itemHolder class
+        val image = ItemsViewModel.image
+        val fileUri = Uri.parse(image)
+        holder.imageView.setImageURI(fileUri)
+
         holder.nameTextView.text = ItemsViewModel.name
         holder.adressTextView.text = ItemsViewModel.address
         holder.starDateTextView.text = ItemsViewModel.startDate
         holder.endDateTextView.text = ItemsViewModel.endDate
-        holder.descriptionTextView.text = ItemsViewModel.description
-        holder.itemView.setOnClickListener {}
+        holder.deleteButton.setOnClickListener {
 
+            builder = AlertDialog.Builder(holder.itemView.context)
+
+            builder.setTitle("Delete").setMessage("Are you sure you want to delete it?")
+                .setCancelable(true)
+                .setNegativeButton("No"){dialogInterface,it ->
+                    dialogInterface.cancel()
+                }
+                .setPositiveButton("Yes"){dialogInterface,it ->
+                    AppDataBase.getDatabase(holder.itemView.context).companyDao().delete(mList[position])
+                    mList.remove(mList[position])
+                    notifyDataSetChanged()
+                }
+                .show()
+
+        }
     }
 
     // return the number of the items in the list
@@ -59,14 +71,7 @@ class CompanyAdapter(private val mList: MutableList<Company>) : RecyclerView.Ada
         val adressTextView: TextView = itemView.findViewById(R.id.addressTextView)
         val starDateTextView: TextView = itemView.findViewById(R.id.startDateTextView)
         val endDateTextView: TextView = itemView.findViewById(R.id.endDateTextView)
-        val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
-
-
-//            init {
-//                itemView.setOnClickListener {
-//                    listener.onItemClick(adapterPosition)
-//                }
-//            }
+        val deleteButton: ImageButton = itemView.findViewById(R.id.deleteButton)
     }
 }
 

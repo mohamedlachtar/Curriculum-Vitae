@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cv.CompanyAdapter
 import com.example.cv.R
 import com.example.cv.models.Company
+import com.example.cv.utils.AppDataBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +35,9 @@ class CompaniesFragment : Fragment() {
         }
     }
 
+    private lateinit var  db : AppDataBase
+    private lateinit var adapter : CompanyAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,28 +48,15 @@ class CompaniesFragment : Fragment() {
         // getting the recyclerview by its id
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview)
 
-        // this creates a vertical layout Manager
-        recyclerview.layoutManager = LinearLayoutManager(context)
-
-        // ArrayList of class ItemsViewModel
-        val data = mutableListOf<Company>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        data.add(Company(R.drawable.apple, "Apple", "USA","20/07/2024","20/07/2027","The one and only"))
-        data.add(Company(R.drawable.apple, "Apple", "USA","20/07/2024","20/07/2027","The one and only"))
+        db = AppDataBase.getDatabase(getActivity()!!)
 
 
-        // This will pass the ArrayList to our Adapter
-        val adapter = CompanyAdapter(data)
-
-        // Setting the Adapter with the recyclerview
+        var list = ArrayList<Company>()
+        list.addAll(db.companyDao().getAll())
+        adapter = CompanyAdapter(list)
         recyclerview.adapter = adapter
-//        adapter.setOnItemClickListener(object : CustomAdapter.onItemClickListener{
-//            override fun onItemClick(position: Int) {
-//                print(position)
-//            }
-//        })
+
+        recyclerview.layoutManager = LinearLayoutManager(context)
 
         return view    }
 

@@ -58,9 +58,7 @@
                 android:id="@+id/androidSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stepSize="10.0"
-                android:valueFrom="0.0"
-                android:valueTo="100.0"
+
                 app:thumbColor="@color/colorSecondary"
                 app:trackColorActive="@color/colorSecondary"
                 tools:ignore="MissingConstraints" />
@@ -91,9 +89,7 @@
                 android:id="@+id/iosSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stepSize="10.0"
-                android:valueFrom="0.0"
-                android:valueTo="100.0"
+
                 app:thumbColor="@color/colorSecondary"
                 app:trackColorActive="@color/colorSecondary"
                 tools:ignore="MissingConstraints" />
@@ -125,9 +121,7 @@
                 android:id="@+id/flutterSlider"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:stepSize="10.0"
-                android:valueFrom="0.0"
-                android:valueTo="100.0"
+
                 app:thumbColor="@color/colorSecondary"
                 app:trackColorActive="@color/colorSecondary"
                 tools:ignore="MissingConstraints" />
